@@ -27,7 +27,7 @@ I handpicked 3 blockchain projects to make the price predictions on (market cap 
 
 I retrieved Twitter using their hashtags & Santiment data for the period 1st Jan 2019 - 18th Feb 2020. There were several steps required to have a ready-to-use time series to be fed into a Machine Learning algorithm. This process can be found in the Jupyter Notebook.
 
-A VAR (Vector Autoregression) of order 1 was chosen as the algorithm to make the performance comparison. The focus of my research was on feature engineering.
+A VAR (Vector Autoregression) with default maxlags (12 * (nobs/100.)**(1./4)) was chosen as the algorithm to make the performance comparison. The focus of my research was on feature engineering.
 
 Dataset
 ---
@@ -64,7 +64,7 @@ I saved the downloaded Twitter data in txt files. So there are untouched in the 
 `AltcoinPredictor.py` is the most important class & time-saver of my work and is used to:
 - initialize an object with a ready to use multivariate time series (e.g. the dataframe built with `SantimentAltcoinData`)
 - split the dataframe into a training set & validation set based on a "cnt_valid" parameter (number of units to be used for validation set)
-- fit + predict a VAR (Vector Autoregression) model of order 1
+- fit + predict a VAR (Vector Autoregression) model with default maxlags (12 * (nobs/100.)**(1./4))
 - save prediction output and error metrics (MAPE & nRMSE) in attributes
 - print error metrics of the prediction after fit + predict
 - plot prediction vs. real price
